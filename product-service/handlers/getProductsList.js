@@ -1,11 +1,10 @@
-"use strict";
-
-module.exports.getProductsList = async (event) => {
+export const getProductsList = async (event) => {
   return {
     statusCode: 200,
     headers: {
       "Access-Control-Allow-Headers": "Content-Type",
-      "Access-Control-Allow-Origin": "http://localhost:3000",
+      // "Access-Control-Allow-Origin": "http://localhost:3000",
+      "Access-Control-Allow-Origin": "https://d2htxos98rraoe.cloudfront.net",
       "Access-Control-Allow-Methods": "OPTIONS,GET",
     },
     body: JSON.stringify([
@@ -50,19 +49,5 @@ module.exports.getProductsList = async (event) => {
         count: 10,
       },
     ]),
-  };
-};
-
-module.exports.getProductsById = async (event) => {
-  return {
-    statusCode: 200,
-    body: JSON.stringify({
-      id: 1,
-      title: "Book 1",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-      price: 10,
-      count: 10,
-    }),
   };
 };
