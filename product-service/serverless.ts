@@ -6,7 +6,11 @@ import getProductsById from '@functions/getProductsById';
 const serverlessConfiguration: AWS = {
   service: 'shop-react-redux-be',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild', 'serverless-auto-swagger'],
+  plugins: [
+    'serverless-esbuild',
+    'serverless-auto-swagger',
+    'serverless-offline',
+  ],
   provider: {
     name: 'aws',
     runtime: 'nodejs14.x',

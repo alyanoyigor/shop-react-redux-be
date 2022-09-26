@@ -52,7 +52,42 @@
       }
     }
   },
-  "definitions": {},
+  "definitions": {
+    "Book": {
+      "properties": {
+        "id": {
+          "title": "Book.id",
+          "type": "number"
+        },
+        "title": {
+          "title": "Book.title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Book.description",
+          "type": "string"
+        },
+        "price": {
+          "title": "Book.price",
+          "type": "number"
+        },
+        "count": {
+          "title": "Book.count",
+          "type": "number"
+        }
+      },
+      "required": [
+        "id",
+        "title",
+        "description",
+        "price",
+        "count"
+      ],
+      "additionalProperties": false,
+      "title": "Book",
+      "type": "object"
+    }
+  },
   "securityDefinitions": {},
   "host": "ph03s3214d.execute-api.eu-central-1.amazonaws.com/dev"
 };

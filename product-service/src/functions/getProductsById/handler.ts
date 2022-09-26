@@ -1,17 +1,27 @@
 import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
+import { Book } from 'src/types/api-types';
+import data from 'src/mocks/books.json';
 
-export const getProductsById = async (_event) => {
-  const data = {
-    id: 1,
-    title: 'Book 1',
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-    price: 10,
-    count: 10,
-  };
+export const getProductsById = async (event: {
+  pathParameters: { productId: string };
+}) => {
+  const { productId } = event.pathParameters;
+  try {
+    const books = data as Book[];
+    const product = books.find((prod) => prod.id.toString() === productId);
 
-  return formatJSONResponse(data);
+    if (!product) {
+      return formatJSONResponse({
+        response: { message: 'Product not found' },
+        statusCode: 404,
+      });
+    }
+
+    return formatJSONResponse({ response: product, statusCode: 200 });
+  } catch (error) {
+    return formatJSONResponse({ response: error, statusCode: 500 });
+  }
 };
 
 export const main = middyfy(getProductsById);
